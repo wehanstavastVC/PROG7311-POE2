@@ -1,0 +1,42 @@
+﻿@model List<Product>
+
+<h2>Products Supplied by Farmer</h2>
+
+@using (Html.BeginForm("FilterProducts", "Products", FormMethod.Get))
+{
+    <div class="form-group">
+        <input type="hidden" name="userId" value="@ViewBag.ApplicationUserId" />
+
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" />
+
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate" />
+
+        <label for="productType">Product Type:</label>
+        <input type="text" id="productType" name="productType" />
+
+        <button type="submit">Filter</button>
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductName</td>
+                <td>@product.Date.ToShortDateString()</td>
+                <td>@product.Type</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

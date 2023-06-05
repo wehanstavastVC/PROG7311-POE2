@@ -1,0 +1,28 @@
+﻿@model List<ApplicationUser>
+
+<h2>Farmers</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Email</td>
+                <td>
+                    @if (User.IsInRole("Employee"))
+                    {
+                        <a asp-controller="Farmers" asp-action="Details" asp-route-id="@user.Id">View Products</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
