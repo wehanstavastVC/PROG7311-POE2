@@ -1,4 +1,5 @@
-﻿using FarmerCentral2.Models;
+﻿using FarmerCentral2.Data.Migrations;
+using FarmerCentral2.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,9 @@ namespace FarmerCentral2.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        // Removed Hard coded data to be inserted in a DataSeeder class
+
+        /*protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
@@ -110,6 +113,6 @@ namespace FarmerCentral2.Data
                 ApplicationUserId = "86a36866-e9e8-437c-9033-a1ffc44c37c0" //farmer2
             };
             builder.Entity<Product>().HasData(p9);
-        }
+        }*/
     }
 }

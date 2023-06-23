@@ -17,6 +17,7 @@ namespace FarmerCentral2.Controllers
             _context = context;
         }
 
+        //Authorizing the Employee to View/Filter
         [Authorize(Roles = "Employee")]
         public async Task<IActionResult> Index()
         {

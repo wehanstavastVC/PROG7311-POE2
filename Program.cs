@@ -1,4 +1,5 @@
 using FarmerCentral2.Data;
+using FarmerCentral2.Data.Migrations;
 using FarmerCentral2.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -25,11 +26,13 @@ public class Program
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+        //Registering Data Seeder
+        builder.Services.AddTransient<DataSeeder>();
+        
         builder.Services.AddRazorPages();
 
         var app = builder.Build();
 
-        // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.UseMigrationsEndPoint();
@@ -37,7 +40,6 @@ public class Program
         else
         {
             app.UseExceptionHandler("/Home/Error");
-            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
         }
 
